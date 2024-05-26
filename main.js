@@ -4,7 +4,9 @@ import { crawlPage } from "./crawl.js";
 import process from 'node:process';
 const { argv } = process;
 
-function main() {
+process.noDeprecation = true;
+
+async function main() {
     if (argv.length > 3) {
         console.log(`Error: Too many CLI arguments`)
     }
@@ -13,8 +15,10 @@ function main() {
     }
     else {
         const baseURL = argv[2];
-        crawlPage(baseURL);
+        
         console.log(`Crawling has begun at ${baseURL}`);
+        const pages = await crawlPage(baseURL);
+        console.log(pages)
     }
 }
 main();
