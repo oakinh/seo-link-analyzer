@@ -1,6 +1,7 @@
 import { normalizeURL } from "./crawl.js";
 import { getURLsFromHTML } from "./crawl.js";
 import { crawlPage } from "./crawl.js";
+import { printReport } from "./report.js";
 import process from 'node:process';
 const { argv } = process;
 
@@ -18,7 +19,7 @@ async function main() {
         
         console.log(`Crawling has begun at ${baseURL}`);
         const pages = await crawlPage(baseURL);
-        console.log(pages)
+        printReport(pages)
     }
 }
 main();
